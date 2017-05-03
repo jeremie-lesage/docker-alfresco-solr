@@ -5,7 +5,7 @@ ENV NEXUS=https://artifacts.alfresco.com/nexus/content/groups/public
 
 WORKDIR /usr/local/tomcat/
 
-ARG ALF_VERSION
+ENV ALF_VERSION=5.2.f
 
 ## SOLR.WAR
 RUN set -x && \
