@@ -17,14 +17,13 @@ RUN set -x && \
 
 COPY assets/web.xml webapps/solr4/WEB-INF/web.xml
 
-WORKDIR /opt/solr/
 
 ## SOLR CONF
 RUN set -x && \
     curl --silent --location \
       ${NEXUS}/org/alfresco/alfresco-solr4/${ALF_VERSION}/alfresco-solr4-${ALF_VERSION}-config.zip \
       -o alfresco-solr4-${ALF_VERSION}-config.zip && \
-    unzip -q alfresco-solr4-${ALF_VERSION}-config.zip -d conf && \
+    unzip -q alfresco-solr4-${ALF_VERSION}-config.zip -d /opt/solr/ && \
     rm alfresco-solr4-${ALF_VERSION}-config.zip
 
 WORKDIR /opt/solr/conf/
