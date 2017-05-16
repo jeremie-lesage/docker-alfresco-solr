@@ -30,7 +30,7 @@ COPY assets/workspace/* /opt/solr/conf/workspace-SpacesStore/conf/
 COPY assets/archive/* /opt/solr/conf/archive-SpacesStore/conf/
 
 
-RUN mkdir /opt/solr_data/ && \
+RUN mkdir /opt/solr_data/ \
       && rm -rf /usr/share/doc \
                 webapps/docs \
                 webapps/examples \
