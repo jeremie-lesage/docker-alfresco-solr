@@ -26,8 +26,8 @@ RUN set -x && \
     unzip -q alfresco-solr4-${ALF_VERSION}-config.zip -d /opt/solr/ && \
     rm alfresco-solr4-${ALF_VERSION}-config.zip
 
-COPY assets/workspace/* /opt/solr/conf/workspace-SpacesStore/conf/
-COPY assets/archive/* /opt/solr/conf/archive-SpacesStore/conf/
+COPY assets/workspace/* /opt/solr/workspace-SpacesStore/conf/
+COPY assets/archive/* /opt/solr/archive-SpacesStore/conf/
 
 
 RUN mkdir /opt/solr_data/ \
