@@ -1,11 +1,11 @@
-FROM tomcat:7.0.77-jre8
+FROM tomcat:7.0.81-jre8
 MAINTAINER Jeremie Lesage <jeremie.lesage@gmail.com>
 
 ENV NEXUS=https://artifacts.alfresco.com/nexus/content/groups/public
 
 WORKDIR /usr/local/tomcat/
 
-ENV ALF_VERSION=5.2.f
+ENV ALF_VERSION=5.2.g
 
 ## SOLR.WAR
 RUN set -x && \
