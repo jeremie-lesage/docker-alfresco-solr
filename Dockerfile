@@ -1,4 +1,4 @@
-FROM tomcat:7.0.81-jre8
+FROM tomcat:7.0.92-jre8
 MAINTAINER Jeremie Lesage <jeremie.lesage@gmail.com>
 
 ENV NEXUS=https://artifacts.alfresco.com/nexus/content/groups/public
@@ -8,7 +8,7 @@ WORKDIR /usr/local/tomcat/
 ENV ALF_VERSION=5.2.g
 
 ## SOLR.WAR
-RUN set -x && \
+RUN set -ex && \
     curl --silent --location \
       ${NEXUS}/org/alfresco/alfresco-solr4/${ALF_VERSION}/alfresco-solr4-${ALF_VERSION}.war \
       -o alfresco-solr4-${ALF_VERSION}.war && \
@@ -17,9 +17,8 @@ RUN set -x && \
 
 COPY assets/web.xml webapps/solr4/WEB-INF/web.xml
 
-
 ## SOLR CONF
-RUN set -x && \
+RUN set -ex && \
     curl --silent --location \
       ${NEXUS}/org/alfresco/alfresco-solr4/${ALF_VERSION}/alfresco-solr4-${ALF_VERSION}-config.zip \
       -o alfresco-solr4-${ALF_VERSION}-config.zip && \
@@ -29,7 +28,6 @@ RUN set -x && \
 COPY assets/workspace/* /opt/solr/workspace-SpacesStore/conf/
 COPY assets/archive/* /opt/solr/archive-SpacesStore/conf/
 
-
 RUN mkdir /opt/solr_data/ \
       && rm -rf /usr/share/doc \
                 webapps/docs \
@@ -37,10 +35,7 @@ RUN mkdir /opt/solr_data/ \
                 webapps/manager \
                 webapps/host-manager
 
-
-
 ENV JAVA_OPTS " -XX:-DisableExplicitGC -Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true -Dfile.encoding=UTF-8 "
-
 
 VOLUME "/opt/solr_data/"
 WORKDIR /root
